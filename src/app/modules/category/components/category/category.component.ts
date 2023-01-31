@@ -6,6 +6,8 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog
 import { NewCategoryComponent } from '../new-category/new-category.component';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 
+import{ConfrmComponent} from '../../../shared/components/confrm/confrm.component';
+
 export interface CategoryElement{
   id:number;
   name:string;
@@ -91,6 +93,23 @@ export class CategoryComponent implements OnInit {
       }
     });
 
+  }
+
+  delete(id:any){
+    const dialogRef = this.dialog.open(ConfrmComponent , {
+      data:{
+        id:id,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result==1){
+        this.openSnackBar("Categoria borrada","Exitosa");
+        this.getCategories();
+      }else if(result==2){
+        this.openSnackBar("Se produjo un error al borrar categoria","Error");
+      }
+    });
   }
 
 }
