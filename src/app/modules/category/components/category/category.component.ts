@@ -31,6 +31,9 @@ export class CategoryComponent implements OnInit {
   displayedColumns: string[] = ['id','name','description','actions'];
   dataSource = new MatTableDataSource<CategoryElement>;
 
+  @ViewChild(MatPaginator)
+  paginator!:MatPaginator;
+
   getCategories(){
     this.categoryService.getCategories().subscribe(data =>{
       //console.log("respuesta categories: ",data);
@@ -49,6 +52,7 @@ export class CategoryComponent implements OnInit {
         });
 
         this.dataSource = new MatTableDataSource<CategoryElement>(dataCategory);
+        this.dataSource.paginator=this.paginator;
       }
   }
 
