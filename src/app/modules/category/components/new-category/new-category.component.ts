@@ -48,7 +48,7 @@ export class NewCategoryComponent implements OnInit {
       }))
     }else{
       this.categoryService.saveCategory(data).subscribe( data=> {
-        console.log(data);
+        //console.log(data);
         this.dialogRef.close(1);
       },(error=>{
         this.dialogRef.close(2);

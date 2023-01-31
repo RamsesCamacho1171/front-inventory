@@ -33,7 +33,7 @@ export class CategoryComponent implements OnInit {
 
   getCategories(){
     this.categoryService.getCategories().subscribe(data =>{
-      console.log("respuesta categories: ",data);
+      //console.log("respuesta categories: ",data);
       this.processCategoriesResponse(data);
 
 
@@ -110,6 +110,16 @@ export class CategoryComponent implements OnInit {
         this.openSnackBar("Se produjo un error al borrar categoria","Error");
       }
     });
+  }
+
+  search(id:string){
+    if(id.length==0){
+      return this.getCategories();
+    }
+
+    this.categoryService.getCategoryById(id).subscribe(data=>{
+      this.processCategoriesResponse(data);
+    })
   }
 
 }
