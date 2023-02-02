@@ -1,0 +1,80 @@
+<!-- esto es una carta -->
+<mat-card>
+    <h2 class="alinear">Listado de productos</h2>
+    <!-- encabezado -->
+    <mat-card-header>
+        <div>
+            <mat-form-field hintLabel="Busque productos" appearance="fill">
+                <mat-label>Buscar productos</mat-label>
+                <input matInput #input>
+            </mat-form-field>
+        </div>
+    </mat-card-header>
+    <mat-card-header>
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <ul fxLayout="row" fxLayoutGap="20px">
+                <li>
+                    <button mat-raised-button color="primary">Agregar producto</button>
+                </li>
+            </ul>
+        </div>
+    </mat-card-header>
+
+    <div mat-card-image>
+        <mat-card-content>
+            <table mat-table [dataSource]="dataSource" class="mat-cell">
+                <!-- id columna -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>N°</th>
+                    <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                </ng-container>
+                 <!-- name columna -->
+                 <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                    <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                </ng-container>
+                  <!-- price columna -->
+                  <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef>Precio</th>
+                    <td mat-cell *matCellDef="let element">{{element.price}}</td>
+                </ng-container>
+
+                 <!-- account columna -->
+                 <ng-container matColumnDef="account">
+                    <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+                    <td mat-cell *matCellDef="let element">{{element.account}}</td>
+                </ng-container>
+
+                 <!-- category columna -->
+                 <ng-container matColumnDef="category">
+                    <th mat-header-cell *matHeaderCellDef>Categoria</th>
+                    <td mat-cell *matCellDef="let element">{{element.category}}</td>
+                </ng-container>
+
+                <!-- picture columna -->
+                <ng-container matColumnDef="picture">
+                    <th mat-header-cell *matHeaderCellDef>Imagen</th>
+                    <td mat-cell *matCellDef="let element"><img [src]="element.picture" width="150" height="150"></td>
+                </ng-container>
+
+                <!-- acciones  -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>acciones</th>>
+                    <td mat-cell *matCellDef="let element; let i=index">
+                        <button mat-icon-button color="accent">
+                            <mat-icon aria-label="Edit">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="accent" >
+                            <mat-icon aria-label="Delete">delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
+        </mat-card-content>
+    </div>
+</mat-card>
