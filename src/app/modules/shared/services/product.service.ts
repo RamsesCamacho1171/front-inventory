@@ -14,4 +14,9 @@ export class ProductService {
     const endpoint=`${baseUrl}/products`
     return this.http.get(endpoint);
   }
+
+  saveProduct(body:any){
+    const endpoint=`${baseUrl}/products`;
+    return this.http.post(endpoint,body);
+  }
 }
