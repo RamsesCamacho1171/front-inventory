@@ -37,6 +37,9 @@ export class NewProductComponent implements OnInit {
       this.updateForm(data);
       this.title = "Editar producto";
     }
+
+    console.log(data)
+    
   }
 
 
@@ -60,9 +63,10 @@ export class NewProductComponent implements OnInit {
     uploadImageData.append('price', data.price);
     uploadImageData.append('account', data.account);
     uploadImageData.append('categoryId', data.category);
-
-    if (data != null) {
+    
+    if (this.data != null) {
       //actualizar
+      console.log('hola')
       this.productService.updateProduct(uploadImageData, this.data.id).subscribe((data: any) => {
         this.dialogRef.close(1);
       }, error => {

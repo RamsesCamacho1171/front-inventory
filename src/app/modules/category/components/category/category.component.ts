@@ -103,6 +103,7 @@ export class CategoryComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfrmComponent , {
       data:{
         id:id,
+        flag:"category"  
       }
     });
 
