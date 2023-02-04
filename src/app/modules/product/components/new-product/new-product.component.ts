@@ -66,7 +66,7 @@ export class NewProductComponent implements OnInit {
     
     if (this.data != null) {
       //actualizar
-      console.log('hola')
+      
       this.productService.updateProduct(uploadImageData, this.data.id).subscribe((data: any) => {
         this.dialogRef.close(1);
       }, error => {

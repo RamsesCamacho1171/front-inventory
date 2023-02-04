@@ -29,4 +29,9 @@ export class ProductService {
     const endpoint=`${baseUrl}/products/${id}`;
     return this.http.delete(endpoint);
   }
+
+  getByName(name:any){
+    const endpoint=`${baseUrl}/products/filter/${name}`;
+    return this.http.get(endpoint);
+  }
 }

@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit {
 
   getProducts(){
     this.productService.getProduct().subscribe(data=>{
-      console.log("respuesta productos: ",data);
+      //console.log("respuesta productos: ",data);
       this.proccesProductResponse(data);
     },error=>{
       console.log(error);
@@ -121,6 +121,20 @@ export class ProductComponent implements OnInit {
         this.openSnackBar("Se produjo un error al eliminar producto","Error");
       }
     });
+  }
+
+  search(name:any){
+    if(name.length == 0){
+      return this.getProducts();
+    }
+
+    this.productService.getByName(name).subscribe(data=>{
+      this.proccesProductResponse(data);
+    },error=>{
+      const dateProduct: ProductElement[]=[];
+      this.dataSource= new MatTableDataSource<ProductElement>(dateProduct);
+      this.dataSource.paginator=this.paginator;
+    })
   }
 
 }
